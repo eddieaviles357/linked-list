@@ -23,7 +23,7 @@ class LinkedList {
   push(val) {
     let node = new Node(val);
 
-    // empty lisked list
+    // empty Linked List
     if(this.head === null) {
       this.head = node;
       this.tail = node;
@@ -42,6 +42,14 @@ class LinkedList {
 
   unshift(val) {
     let node = new Node(val);
+
+    // empty Linked List
+    if(this.head === null) {
+      this.head = node;
+      this.tail = node;
+      this.length++;
+      return;
+    }
     // node next value points to the head
     node.next = this.head;
     // new head is assigned to new node
@@ -54,7 +62,7 @@ class LinkedList {
 
   pop() {
     let popped = null;
-    let currentNode = null;
+    let currentNode = this.head;
 
     // nothing in Linked List
     if (this.length === 0 && this.head === null) throw new Error('Empty Linked List');
@@ -65,10 +73,9 @@ class LinkedList {
       this.head = null;
       this.tail = null;
       this.length--;
-      return popped;
+      return popped.val;
     }
-    // starting point
-    currentNode = this.head;
+    
     // traverse Linked List until we find the tail
     while(currentNode.next !== this.tail) {
       currentNode = currentNode.next;
@@ -84,7 +91,7 @@ class LinkedList {
     // decrement length by one
     this.length--;
     // return the popped node;
-    return popped;
+    return popped.val;
   };
 
   /** shift(): return & remove first item. */
@@ -174,5 +181,5 @@ class LinkedList {
   }
 }
 
-var ll = new LinkedList(['test','second test', 'play', 'study', 'enjoy', 'success']);
-// module.exports = LinkedList;
+// var ll = new LinkedList(['test','second test', 'play', 'study', 'enjoy', 'success']);
+module.exports = LinkedList;
