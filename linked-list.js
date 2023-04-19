@@ -34,7 +34,7 @@ class LinkedList {
     this.tail.next = node;
     // new node is now the tail
     this.tail = node;
-
+    // increment length by one
     this.length++;
   };
 
@@ -46,6 +46,7 @@ class LinkedList {
     node.next = this.head;
     // new head is assigned to new node
     this.head = node;
+    // increment length by one
     this.length++;
   };
 
@@ -80,7 +81,7 @@ class LinkedList {
     this.tail = currentNode;
     // set tails next pointer to null
     this.tail.next = null;
-    // one less node in Linked List
+    // decrement length by one
     this.length--;
     // return the popped node;
     return popped;
@@ -101,7 +102,7 @@ class LinkedList {
     };
     // heads next node is now the new head
     this.head = this.head.next;
-    // subtract length by one
+    // decrement length by one;
     this.length--;
     // set currentNode next pointer to null
     currentNode.next = null;
@@ -140,8 +141,25 @@ class LinkedList {
   /** insertAt(idx, val): add node w/val before idx. */
 
   insertAt(idx, val) {
+    let currentNode = this.head;
+    // treat index as an array
+    if (idx >= this.length || idx < 0) throw new Error('Out of range index');
+    if (typeof idx !== 'number') throw new Error('Index must be a number');
+    
+    // no need to traverse if its first or last index O(1)
+    if (idx === 0) return this.unshift(val); // its at the head
+    if (idx === this.length - 1) return this.push(val); // its at the tail
 
-  }
+    // O(n)
+    for (let i = 1; i < idx; i++) {
+      currentNode = currentNode.next;
+    };
+    // create new node to insert 
+    let node = new Node(val);
+    node.next = currentNode.next; // new node points to current nodes next node
+    currentNode.next = node; // current node points to new node
+    this.length++; // increment length
+  };
 
   /** removeAt(idx): return & remove item at idx, */
 
