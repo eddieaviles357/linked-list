@@ -193,9 +193,16 @@ class LinkedList {
   /** average(): return an average of all values in the list */
 
   average() {
-    
+    let currentNode = this.head;
+    let average = 0;
+    if(this.head === null && this.length === 0) return average;
+
+    while(currentNode !== null) {
+      average = currentNode.val + average;
+      currentNode = currentNode.next;
+    }
+    return average / this.length;
   }
 }
 
-// var ll = new LinkedList(['one','two', 'three', 'four', 'five', 'six']);
 module.exports = LinkedList;
