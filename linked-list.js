@@ -105,7 +105,7 @@ class LinkedList {
       this.head = null;
       this.tail = null
       this.length--;
-      return currentNode;
+      return currentNode.val;
     };
     // heads next node is now the new head
     this.head = this.head.next;
@@ -114,7 +114,7 @@ class LinkedList {
     // set currentNode next pointer to null
     currentNode.next = null;
 
-    return currentNode;
+    return currentNode.val;
   };
 
   /** getAt(idx): get val at idx. */
