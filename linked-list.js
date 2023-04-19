@@ -128,7 +128,7 @@ class LinkedList {
     for (let i = 0; i < idx; i++) {
       currentNode = currentNode.next;
     }
-    return currentNode;
+    return currentNode.val;
   };
 
   /** setAt(idx, val): set val at idx to val */
