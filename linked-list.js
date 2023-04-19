@@ -139,9 +139,11 @@ class LinkedList {
     if (idx >= this.length || idx < 0) throw new Error('Out of range index');
     if (typeof idx !== 'number') throw new Error('Index must be a number');
 
-    for (let i = 0; i < idx; i++) {
+    for (let i = 0; i < idx; ++i) {
       currentNode = currentNode.next;
     }
+    let popped = currentNode;
+
     currentNode.val = val;
   };
 
@@ -171,7 +173,22 @@ class LinkedList {
   /** removeAt(idx): return & remove item at idx, */
 
   removeAt(idx) {
+    let currentNode = this.head;
+    // treat index as an array
+    if (idx >= this.length || idx < 0) throw new Error('Out of range index');
+    if (typeof idx !== 'number') throw new Error('Index must be a number');
 
+    // O(1) if at first node and last node
+    if (idx === 0) return this.shift();
+    if (idx === this.length - 1) return this.pop();
+
+    for (let i = 0; i < idx - 1; i++) {
+      currentNode = currentNode.next;
+    }
+    let popped = currentNode.next;
+    currentNode.next = popped.next;
+    this.length--;
+    return popped.val;
   }
 
   /** average(): return an average of all values in the list */
@@ -181,5 +198,5 @@ class LinkedList {
   }
 }
 
-// var ll = new LinkedList(['test','second test', 'play', 'study', 'enjoy', 'success']);
+// var ll = new LinkedList(['one','two', 'three', 'four', 'five', 'six']);
 module.exports = LinkedList;
