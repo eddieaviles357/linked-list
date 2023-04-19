@@ -149,13 +149,13 @@ class LinkedList {
 
   insertAt(idx, val) {
     let currentNode = this.head;
-    // treat index as an array
-    if (idx >= this.length || idx < 0) throw new Error('Out of range index');
+    
+    if (idx > this.length || idx < 0) throw new Error('Out of range index');
     if (typeof idx !== 'number') throw new Error('Index must be a number');
     
     // no need to traverse if its first or last index O(1)
     if (idx === 0) return this.unshift(val); // its at the head
-    if (idx === this.length - 1) return this.push(val); // its at the tail
+    if (idx === this.length && idx !== 0) return this.push(val); // its at the tail
 
     // O(n)
     for (let i = 1; i < idx; i++) {
