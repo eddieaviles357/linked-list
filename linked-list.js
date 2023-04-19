@@ -139,10 +139,9 @@ class LinkedList {
     if (idx >= this.length || idx < 0) throw new Error('Out of range index');
     if (typeof idx !== 'number') throw new Error('Index must be a number');
 
-    for (let i = 0; i < idx; ++i) {
+    for (let i = 0; i < idx; i++) {
       currentNode = currentNode.next;
     }
-    let popped = currentNode;
 
     currentNode.val = val;
   };
